@@ -18,16 +18,7 @@ class User_model extends CI_Model
     {
         return $this->db->get_where('users',array('userid'=>$userid))->row_array();
     }
-    function get_benificiare($userid)
-    {
-
-        $this->get_user($userid);
-        $this->db->where('is_benificiare =', TRUE);
-        return $this->db->get('users')->row_array();
- 
-
-    }
-        
+    
     /*
      * Get all users
      */

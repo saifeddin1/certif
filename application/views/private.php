@@ -1,38 +1,27 @@
 <div class="row">
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
-			<li class="nav-item mx-3 ">
-			<h1 class="text-end">Hello, <span class="fst-italic"> <?php echo $_SESSION['user']['username']; ?> </span> </h1>
-			</li>
-			<li class="nav-item mx-3 ">
-			<a href="<?php echo site_url('auth/logout'); ?>" class="text-danger">logout</a>
-
-			</li>
-		</ul>
-	</nav>
- 	<div class="col-12 card p-3 mb-3">
+	<h1>Hello <?php echo $_SESSION['user']['username']; ?>  </h1><a href="<?php echo site_url('auth/logout'); ?>" class="text-danger">logout</a href="<?php echo site_url('auth/logout') ?>">
+	<h6><?php echo $_SESSION['user_logged']  ?></h6>
+	<div class="col-12 card p-3 mb-3">
 	
 		<h2>Certificats</h2>
 		<table class="table" border="1">
 			<tr>
 				<th>Idcertif</th>
-				<th>Titre</th>
-				<th>Date Effectuee</th>
+				<th>Dateeffectuee</th>
 				<th>Periode</th>
 				<th>Actions</th>
 			</tr>
 			<?php foreach($certificats as $c){ ?>
 			<tr>
 				<td>
-					<?php echo $c['idcertif']; ?>
- 				</td>
-				<td class="text-truncate" style="max-width:100px;"><?php echo $c['title']; ?></td>
+				<a href="<?php echo site_url('certificat/detail/'.$c['idcertif']); ?>" class='fs-4'>
+						<?php echo $c['idcertif']; ?>
+					</a>
+				</td>
 				<td><?php echo $c['dateeffectuee']; ?></td>
 				<td><?php echo $c['periode']; ?></td>
 				<td>
-
 					<!-- <a href="<?php //echo site_url('certificat/edit/'.$c['idcertif']); ?>" class="btn btn-warning">Modifier</a> -->
-					<a href="<?php echo site_url('certificat/detail/'.$c['idcertif']); ?>" class='btn btn-primary text-white'>Ouvrir</a>
 					<a href="<?php echo site_url('certificat/remove/'.$c['idcertif']); ?>" class="btn btn-danger">Supprimer</a>
 					<!-- <a href="<?php// echo site_url('certificat/pdf/'.$c['idcertif']); ?>" class="btn btn-success" target="_blank">Generate PDF</a> -->
 				</td>
@@ -98,7 +87,8 @@
 				<td><?php echo $h['certif_id']; ?></td>
 				<td><?php echo $h['date_rempli']; ?></td>
  				<td>
- 				 <a href="<?php echo site_url('history/pdf/'.$h['id_history']); ?>" class="btn btn-success" target="_blank">Generer PDF</a>
+				 <a href="<?php echo site_url('history/remove/'.$h['id_history']); ?>" class="btn btn-danger">Supprimer</a>
+				 <a href="<?php echo site_url('history/pdf/'.$h['id_history']); ?>" class="btn btn-success" target="_blank">Generer PDF</a>
 				</td>
 			</tr>
 			<?php } ?>

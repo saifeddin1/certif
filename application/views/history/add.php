@@ -13,7 +13,17 @@
 	<div id="certif_label"> </div>
 <br><br><br>
 
-	 
+	 	<div>
+		Benificiare: 
+		<select name="ben_id" id="">
+		<option value="">------------</option>
+			<?php foreach($benificiares as $benificiare){ ?>
+			<option value='<?php echo $benificiare['userid'];?>'>
+				<?php echo $benificiare['nom'].' '.$benificiare['prenom'] ;?>
+			</option>
+			<?php } ?>
+		</select>
+ 	</div>
  
 		<input type="text" id="counter" name="counter" hidden>
 	 <button type="submit">Save</button>

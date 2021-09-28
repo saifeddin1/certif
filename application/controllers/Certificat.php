@@ -15,7 +15,7 @@ class Certificat extends CI_Controller{
 
         if(!isset($_SESSION['user_logged'])){
             $this->session->set_flashdata('error','connecter !!!!');
-            redirect('user/login');
+            redirect('auth/login');
         }
 
     } 
@@ -23,24 +23,15 @@ class Certificat extends CI_Controller{
     /*
      * Listing of certificats
      */
-    function index()
-    {
-        $data['certificats'] = $this->Certificat_model->get_all_certificats();
+    // function index()
+    // {
+    //     $data['certificats'] = $this->Certificat_model->get_all_certificats();
 
-        $data['_view'] = 'certificat/index';
-        $this->load->view('layouts/main',$data);
-    }
+    //     $data['_view'] = 'certificat/index';
+    //     $this->load->view('layouts/main',$data);
+    // }
 
-    function pdf($idcertif)
-    {
-        $this->load->helper('pdf_helper');
-        $data['certificat'] = $this->Certificat_model->get_certificat($idcertif);
-        $data['items'] =  $this->Certificat_model->get_certif_labels($idcertif);
-        $data['labels'] = $this->Label_model->get_all_labels();
-        $data['user'] = $this->User_model->get_user($data['certificat']['user_id']);
-        $data['benificiare'] = $this->User_model->get_benificiare($data['user']['userid']);
-        $this->load->view('pdfreport', $data);
-    }
+    
 
     function detail($idcertif)
     {
@@ -57,8 +48,10 @@ class Certificat extends CI_Controller{
         }
         $data['labels'] = $this->Certificat_model->get_certificate_labels($idcertif);
         
-        $data['user'] = $this->Certificat_model->get_certif_user($idcertif);
-        $data['benificiare'] = $this->User_model->get_benificiare($data['certificat']['user_id']);
+        $data['user'] = $_SESSION['user'];
+        $data['benificiare'] = $this->History_model->get_benificiare($data['certificat']['idcertif']);
+        // $data['benificiare'] = $this->User_model->get_user()
+        
         $data['benificiares'] = $this->User_model->get_benificiares();
         // $data['history_id'] = $this->History_model->get_certif_history($idcertif)['id_history'];
 
@@ -85,6 +78,7 @@ class Certificat extends CI_Controller{
     {   
         if(isset($_POST) && count($_POST) > 0)     
         {   
+            
             $params = array(
 				'title' => $this->input->post('titre'),
 				'dateeffectuee' => $this->input->post('dateeffectuee'),
@@ -109,11 +103,10 @@ class Certificat extends CI_Controller{
             //                                                         'certif_id'=>$certificat_id, 
             //                                                         'date_rempli'=>date('Y-m-d H:i:s')));
             
-            redirect('/');
+            redirect('history/add');
         }
         else
         {          
-            $data['benificiares'] = $this->User_model->get_benificiares();
   
             $data['users'] = $this->User_model->get_all_users();
 

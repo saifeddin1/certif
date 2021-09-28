@@ -14,7 +14,7 @@ class Montant_item extends CI_Controller{
         
         if(!isset($_SESSION['user_logged'])){
             $this->session->set_flashdata('error','connecter !!!!');
-            redirect('user/login');
+            redirect('auth/login');
         }
 
     } 
@@ -22,13 +22,13 @@ class Montant_item extends CI_Controller{
     /*
      * Listing of montant_items
      */
-    function index()
-    {
-        $data['montant_items'] = $this->Montant_item_model->get_all_montant_items();
+    // function index()
+    // {
+    //     $data['montant_items'] = $this->Montant_item_model->get_all_montant_items();
         
-        $data['_view'] = 'montant_item/index';
-        $this->load->view('layouts/main',$data);
-    }
+    //     $data['_view'] = 'montant_item/index';
+    //     $this->load->view('layouts/main',$data);
+    // }
 
     /*
      * Adding a new montant_item

@@ -14,7 +14,7 @@ class Dashboard extends CI_Controller{
 
         if(!isset($_SESSION['user_logged'])){
             $this->session->set_flashdata('error','connecter !!!!');
-            redirect('user/login');
+            redirect('auth/login');
         }
 
     } 
@@ -22,13 +22,25 @@ class Dashboard extends CI_Controller{
 
     function index()
     {
+        $data['histories'] =  $this->History_model->get_user_history($_SESSION['user']['userid']);
+        $data['certificats'] = $this->Certificat_model->get_user_certificats($_SESSION['user']['userid']);
+
+        $data['users'] = $this->User_model->get_all_users();
+        $data['benificiares'] = $this->User_model->get_benificiares();
+        
+        $data['_view'] = 'dashboard';
+        $this->load->view('layouts/main',$data);
+        
+    }
+    function private()
+    {
         $data['histories'] =  $this->History_model->get_all_history();
         $data['certificats'] = $this->Certificat_model->get_all_certificats();
 
         $data['users'] = $this->User_model->get_all_users();
         $data['benificiares'] = $this->User_model->get_benificiares();
         
-        $data['_view'] = 'dashboard';
+        $data['_view'] = 'private';
         $this->load->view('layouts/main',$data);
         
     }

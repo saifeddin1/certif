@@ -29,6 +29,33 @@ class History_model extends CI_Model
         return $this->db->get()->row_array();
     }
  
+
+    function get_user_history($userid)
+    {
+        $this->db->select('history.*');
+        $this->db->from('history');
+        $this->db->join('users', 'history.certif_id = users.userid', 'left');
+        $this->db->where('history.user_id', $userid);
+
+        return $this->db->get()->result_array();
+    }
+
+    function get_benificiare($idcertif)
+    {
+
+        $this->db->select('users.*');
+        $this->db->from('users');
+        $this->db->join('history', 'users.userid = history.beneficiary_id','left');
+        $this->db->join('certificats', 'history.certif_id = certificats.idcertif','left');
+         $this->db->where('certificats.idcertif', $idcertif);
+        //  $this->db->where('users.is_benificiare =', TRUE);
+        return $this->db->get()->row_array();
+ 
+
+    }
+
+
+
    function get_available_certifs()
    {
     $this->db->select('certificats.*');

@@ -25,17 +25,22 @@
 
         <div class="mb-4">
             <h4>Benficiare</h4>
-            <div class="card p-2" style="width:max-content;">
+            <?php if(isset($benificiare)){; ?>
+                <div class="card p-2" style="width:max-content;">
 
-                <h6><?php echo $benificiare['nom'].' '.$benificiare['prenom'].' ('.$benificiare['usertype'].')'; ?> </h6>
-                <h6>Identifiant : 
-                <?php 
-                        echo (isset($benificiare['cin']) && $benificiare['cin'] !=0?
-                            $benificiare['cin']
-                            : $benificiare['matricule']); 
-                ?>
-                </h6>
-            </div>
+                    <h6><?php echo $benificiare['nom'].' '.$benificiare['prenom'].' ('.$benificiare['usertype'].')'; ?> </h6>
+                    <h6>Identifiant : 
+                    <?php 
+                            echo (isset($benificiare['cin']) && $benificiare['cin'] !=0?
+                                $benificiare['cin']
+                                : $benificiare['matricule']); 
+                    ?>
+                    </h6>
+                </div>
+                <?php }else{; ?>
+                       hhhhhhhhhhhhh
+                <?php }; ?>
+ 
             
         </div>
     </div>

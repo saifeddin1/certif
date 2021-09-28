@@ -1,8 +1,9 @@
-<?php echo form_open('user/register'); ?>
+<?php echo form_open('auth/register'); ?>
 
  
 <?php echo validation_errors('<div>','</div>'); ?>
 
+<h1>Creer votre compte</h1>
 <input type="text" name="nom" placeholder="nom"> <br>
 <input type="text" name="prenom" placeholder="prenom"> <br>
 <input type="text" name="adress" placeholder="adress"> <br>
@@ -21,11 +22,13 @@
 <input type="text" name="cod_category" placeholder="cod_category" class="societe"> <br>
 <input type="text" name="cod_tva" placeholder="cod_tva"  class="societe">  <br>
 
+
 <button type="submit">
     Creer un compte
 </button>
 <?php echo form_close(); ?>
-
+<br>
+<a href="<?php echo site_url('auth/login'); ?>">Se Connecter</a> <br>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 

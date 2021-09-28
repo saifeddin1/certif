@@ -40,7 +40,9 @@ class Certificat_model extends CI_Model
         return $this->db->get()->result_array();
     }
  
-    
+
+        
+
     /*
      * Get all certificats
      */
@@ -49,6 +51,18 @@ class Certificat_model extends CI_Model
         $this->db->order_by('idcertif', 'desc');
         return $this->db->get('certificats')->result_array();
     }
+
+    function get_user_certificats($userid)
+    {
+        $this->db->select('certificats.*');
+        $this->db->from('certificats');
+        $this->db->join('history', 'certificats.idcertif = history.certif_id', 'left');
+        $this->db->where('history.user_id', $userid);
+
+        return $this->db->get()->result_array();
+    }
+
+
     function get_certif_user($idcertif)
     {
         $this->db->select('users.*');

@@ -1,38 +1,32 @@
+ 
 <?php echo form_open('certificat/add'); ?>
+
 <h1>Info certificat</h1>
 	<div>
 		Titre : 
-		<input type="text" name="titre" value="<?php echo $this->input->post('titre'); ?>" />
+		<input type="text" name="titre" value="<?php echo $this->input->post('titre'); ?>" required/>
 	</div>
 	<div>
 		Dateeffectuee : 
-		<input type="date" onchange='disable()' name="dateeffectuee" value="<?php echo $this->input->post('dateeffectuee'); ?>" />
+		<input type="date" onchange='disable()' name="dateeffectuee" value="<?php echo $this->input->post('dateeffectuee'); ?>" required/>
 	</div>
 	<div>
 		Periode : 
 		<input type="text" name="periode" value="<?php echo $this->input->post('periode'); ?>" />
 	</div>
 	<div>
-		Payeur : 
-		<select name="user_id" id="">
+		Payeur : <?php echo $_SESSION['user']['nom'].' '.$_SESSION['user']['prenom'] ;?>
+		<input type="text" name="user_id" value="<?php echo $_SESSION['user']['userid'] ;?>" hidden>
+		<!-- <select name="user_id" id="">
 
-			<?php foreach($users as $user){ ?>
-			<option value='<?php echo $user['userid'];?>'>
-				<?php echo $user['nom'].' '.$user['prenom'] ;?>
+			<?php// foreach($users as $user){ ?>
+			<option value='<?php //echo $user['userid'];?>'>
+				<?php //echo $user['nom'].' '.$user['prenom'] ;?>
 			</option>
-			<?php } ?>
-		</select>
+			<?php //} ?>
+		</select> -->
  	</div>
-	<div>
-		Benificiare: 
-		<select name="user_id" id="">
-			<?php foreach($benificiares as $benificiare){ ?>
-			<option value='<?php echo $benificiare['userid'];?>'>
-				<?php echo $benificiare['nom'].' '.$benificiare['prenom'] ;?>
-			</option>
-			<?php } ?>
-		</select>
- 	</div>
+
 	<h2>Labels</h2>
 			<div id="labels">
 

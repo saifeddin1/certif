@@ -16,7 +16,7 @@ class History extends CI_Controller{
 
         if(!isset($_SESSION['user_logged'])){
             $this->session->set_flashdata('error','connecter !!!!');
-            redirect('user/login');
+            redirect('auth/login');
         }
 
     } 
@@ -44,8 +44,8 @@ class History extends CI_Controller{
             $data['total_retenue'] += $item['montant_net'];
         }
         $data['labels'] = $this->Label_model->get_all_labels();
-        $data['user'] = $this->User_model->get_user($data['history']['user_id']);
-        $data['benificiare'] = $this->User_model->get_benificiare($data['user']['userid']);
+        $data['user'] = $_SESSION['user'];
+        $data['benificiare'] = $this->History_model->get_benificiare($data['certificat']['idcertif']);
         $this->load->view('pdfreport', $data);
     }
 
@@ -65,10 +65,13 @@ class History extends CI_Controller{
                 $params = array(
                     'certif_id' => $this->input->post('certif_id'),
                 );
-                $params['user_id'] = $this->Certificat_model->get_certif_user($params['certif_id'])['userid'];
+                
+                // $params['user_id'] = $this->Certificat_model->get_certif_user($params['certif_id'])['userid'];
+                $params['user_id'] = $_SESSION['user']['userid'];
 
                 $history_id = $this->History_model->add_history(array('user_id'=>$params['user_id'], 
                                                                         'certif_id'=>$params['certif_id'], 
+                                                                        'beneficiary_id'=>$this->input->post('ben_id'), 
                                                                         'date_rempli'=>date('Y-m-d H:i:s')));
                 
                 $counter = $_POST['counter'];
@@ -92,6 +95,7 @@ class History extends CI_Controller{
                 $data['users'] = $this->User_model->get_all_users();
                 // $data['certificats'] = $this->Certificat_model->get_all_certificats();
                 $data['certificats'] = $this->History_model->get_available_certifs();
+                $data['benificiares'] = $this->User_model->get_benificiares();
 
                 $data['_view'] = 'history/add';
                 $this->load->view('layouts/main',$data);

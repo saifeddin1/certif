@@ -10,23 +10,23 @@ class User extends CI_Controller{
         parent::__construct();
         $this->load->model('User_model');
         
-        // if(!isset($_SESSION['user_logged'])){
-        //     $this->session->set_flashdata('error','connecter !!!!');
-        //     redirect('user/login');
-        // }
+        if(!isset($_SESSION['user_logged'])){
+            $this->session->set_flashdata('error','connecter !!!!');
+            redirect('auth/login');
+        }
 
     } 
 
     /*
      * Listing of users
      */
-    function index()
-    {
-        $data['users'] = $this->User_model->get_all_users();
+    // function index()
+    // {
+    //     $data['users'] = $this->User_model->get_all_users();
         
-        $data['_view'] = 'user/index';
-        $this->load->view('layouts/main',$data);
-    }
+    //     $data['_view'] = 'user/index';
+    //     $this->load->view('layouts/main',$data);
+    // }
 
     /*
      * Adding a new user
@@ -115,61 +115,61 @@ class User extends CI_Controller{
     
 
 
-    function register(){
-        if(isset($_POST) && count($_POST) > 0) {
-            $this->form_validation->set_rules('username', 'Username', 'required');
-            $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+    // function register(){
+    //     if(isset($_POST) && count($_POST) > 0) {
+    //         $this->form_validation->set_rules('username', 'Username', 'required');
+    //         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
 
-            if($this->form_validation->run() == TRUE){
-                $params = array(
-					'usertype' => $this->input->post('usertype'),
-					'matricule' => $this->input->post('matricule'),
-					'cin' => $this->input->post('cin'),
-					'nom' => $this->input->post('nom'),
-					'prenom' => $this->input->post('prenom'),
-					'username' => $this->input->post('username'),
-					'password' => $this->input->post('password'),
-                    'adress' => $this->input->post('adress'),
-					'num_etab_sec' => $this->input->post('num_etab_sec'),
-					'cod_category' => $this->input->post('cod_category'),
-					'cod_tva' => $this->input->post('cod_tva'),
-                );
+    //         if($this->form_validation->run() == TRUE){
+    //             $params = array(
+	// 				'usertype' => $this->input->post('usertype'),
+	// 				'matricule' => $this->input->post('matricule'),
+	// 				'cin' => $this->input->post('cin'),
+	// 				'nom' => $this->input->post('nom'),
+	// 				'prenom' => $this->input->post('prenom'),
+	// 				'username' => $this->input->post('username'),
+	// 				'password' => $this->input->post('password'),
+    //                 'adress' => $this->input->post('adress'),
+	// 				'num_etab_sec' => $this->input->post('num_etab_sec'),
+	// 				'cod_category' => $this->input->post('cod_category'),
+	// 				'cod_tva' => $this->input->post('cod_tva'),
+    //             );
 
-                $user_id = $this->User_model->add_user($params);
-                $this->session->set_flashdata("success","Votre compte a été bien crée. Vous pouvez vous connecter.");
-                redirect('user/login');
-            }
+    //             $user_id = $this->User_model->add_user($params);
+    //             $this->session->set_flashdata("success","Votre compte a été bien crée. Vous pouvez vous connecter.");
+    //             redirect('user/login');
+    //         }
 
 
-        }
-        $this->load->view('register');
-    }
+    //     }
+    //     $this->load->view('register');
+    // }
 
-    function login(){
-        if(isset($_POST) && count($_POST) > 0) {
-            $this->form_validation->set_rules('username', 'Username', 'required');
-            $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+    // function login(){
+    //     if(isset($_POST) && count($_POST) > 0) {
+    //         $this->form_validation->set_rules('username', 'Username', 'required');
+    //         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
 
-            if($this->form_validation->run() == TRUE){
-                $username = $this->input->post('username');
-                $password = md5($this->input->post('password'));
-                $user = $this->User_model->verify_user($username, $password);
-                if($user){
-                    $this->session->set_flashdata("success","Vous etes connecté(e).");
-                    $_SESSION['user_logged'] = TRUE;
-                    $_SESSION['user'] = $user['username'];
-                    redirect('/');
+    //         if($this->form_validation->run() == TRUE){
+    //             $username = $this->input->post('username');
+    //             $password = md5($this->input->post('password'));
+    //             $user = $this->User_model->verify_user($username, $password);
+    //             if($user){
+    //                 $this->session->set_flashdata("success","Vous etes connecté(e).");
+    //                 $_SESSION['user_logged'] = TRUE;
+    //                 $_SESSION['user'] = $user['username'];
+    //                 redirect('/');
 
-                }else{
-                    $this->session->set_flashdata("error","Pas de compte.");
-                    redirect('user/login');
+    //             }else{
+    //                 $this->session->set_flashdata("error","Pas de compte.");
+    //                 redirect('user/login');
 
-                }
-            }
+    //             }
+    //         }
         
-        }
-        $this->load->view('login');
-    }
+    //     }
+    //     $this->load->view('login');
+    // }
 
 
 }

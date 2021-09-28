@@ -14,7 +14,7 @@ class Label extends CI_Controller{
  
         if(!isset($_SESSION['user_logged'])){
             $this->session->set_flashdata('error','connecter !!!!');
-            redirect('user/login');
+            redirect('auth/login');
         }
 
     } 
@@ -22,13 +22,13 @@ class Label extends CI_Controller{
     /*
      * Listing of labels
      */
-    function index()
-    {
-        $data['labels'] = $this->Label_model->get_all_labels();
+    // function index()
+    // {
+    //     $data['labels'] = $this->Label_model->get_all_labels();
         
-        $data['_view'] = 'label/index';
-        $this->load->view('layouts/main',$data);
-    }
+    //     $data['_view'] = 'label/index';
+    //     $this->load->view('layouts/main',$data);
+    // }
 
     /*
      * Adding a new label
