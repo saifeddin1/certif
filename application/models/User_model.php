@@ -28,10 +28,11 @@ class User_model extends CI_Model
         return $this->db->get('users')->result_array();
     }
 
-    function get_benificiares()
+    function get_benificiares($user_id)
     {
         $this->db->order_by('userid', 'desc');
         $this->db->where('is_benificiare =', TRUE);
+        $this->db->where('added_by =', $user_id);
         return $this->db->get('users')->result_array();
     }
         

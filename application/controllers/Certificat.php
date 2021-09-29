@@ -52,7 +52,7 @@ class Certificat extends CI_Controller{
         $data['benificiare'] = $this->History_model->get_benificiare($data['certificat']['idcertif']);
         // $data['benificiare'] = $this->User_model->get_user()
         
-        $data['benificiares'] = $this->User_model->get_benificiares();
+        $data['benificiares'] = $this->User_model->get_benificiares($_SESSION['user']['userid']);
         // $data['history_id'] = $this->History_model->get_certif_history($idcertif)['id_history'];
 
         $data['_view'] = 'certificat/detail';
@@ -144,7 +144,7 @@ class Certificat extends CI_Controller{
             }
             else
             {
-                $data['benificiares'] = $this->User_model->get_benificiares();
+                $data['benificiares'] = $this->User_model->get_benificiares($_SESSION['user']['userid']);
 
                 $data['users'] = $this->User_model->get_all_users();
 

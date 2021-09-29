@@ -46,6 +46,7 @@ class User extends CI_Controller{
 				'cod_category' => $this->input->post('cod_category'),
 				'cod_tva' => $this->input->post('cod_tva'),
 				'is_benificiare' => 1,
+                'added_by' => $_SESSION['user']['userid'],
             );
             
             $user_id = $this->User_model->add_user($params);

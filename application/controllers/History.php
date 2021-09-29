@@ -95,7 +95,7 @@ class History extends CI_Controller{
                 $data['users'] = $this->User_model->get_all_users();
                 // $data['certificats'] = $this->Certificat_model->get_all_certificats();
                 $data['certificats'] = $this->History_model->get_available_certifs();
-                $data['benificiares'] = $this->User_model->get_benificiares();
+                $data['benificiares'] = $this->User_model->get_benificiares($_SESSION['user']['userid']);
 
                 $data['_view'] = 'history/add';
                 $this->load->view('layouts/main',$data);

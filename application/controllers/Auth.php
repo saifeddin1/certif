@@ -13,7 +13,7 @@ class Auth extends CI_Controller{
         if(isset($_POST) && count($_POST) > 0) {
             $this->form_validation->set_rules('username', 'Username', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
-
+ 
             if($this->form_validation->run() == TRUE){
                 $params = array(
 					'usertype' => $this->input->post('usertype'),
@@ -27,6 +27,7 @@ class Auth extends CI_Controller{
 					'num_etab_sec' => $this->input->post('num_etab_sec'),
 					'cod_category' => $this->input->post('cod_category'),
 					'cod_tva' => $this->input->post('cod_tva'),
+                    'added_by' => (isset($_SESSION['user']['userid'])?$_SESSION['user']['userid']:1),
                     'date_created' => date('Y-m-d'),
                 );
 

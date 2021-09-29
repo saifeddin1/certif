@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller{
         $data['certificats'] = $this->Certificat_model->get_user_certificats($_SESSION['user']['userid']);
 
         $data['users'] = $this->User_model->get_all_users();
-        $data['benificiares'] = $this->User_model->get_benificiares();
+        $data['benificiares'] = $this->User_model->get_benificiares($_SESSION['user']['userid']);
         
         $data['_view'] = 'dashboard';
         $this->load->view('layouts/main',$data);
@@ -38,7 +38,7 @@ class Dashboard extends CI_Controller{
         $data['certificats'] = $this->Certificat_model->get_all_certificats();
 
         $data['users'] = $this->User_model->get_all_users();
-        $data['benificiares'] = $this->User_model->get_benificiares();
+        $data['benificiares'] = $this->User_model->get_benificiares($_SESSION['user']['userid']);
         
         $data['_view'] = 'private';
         $this->load->view('layouts/main',$data);
