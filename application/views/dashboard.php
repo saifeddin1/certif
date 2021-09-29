@@ -2,7 +2,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
 			<li class="nav-item mx-3 ">
-			<h1 class="text-end">Hello, <span class="fst-italic"> <?php echo $_SESSION['user']['username']; ?> </span> </h1>
+			<h1 class="text-end">Hello, <span class="fst-italic"> <?php echo '@'.$_SESSION['user']['username']; ?> </span> </h1>
 			</li>
 			<li class="nav-item mx-3 ">
 			<a href="<?php echo site_url('auth/logout'); ?>" class="text-danger">logout</a>
@@ -84,7 +84,7 @@
 		<table class="table" border="1">
 			<tr>
 				<th>ID</th>
- 				<th>User Id</th>
+ 				<th>User</th>
 				<th>Certificat</th>
 				<th>Date Rempli</th>
 				<th>Actions</th>

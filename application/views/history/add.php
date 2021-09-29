@@ -22,7 +22,7 @@
 				<?php echo $benificiare['nom'].' '.$benificiare['prenom'] ;?>
 			</option>
 			<?php } ?>
-		</select>
+		</select> <a href="<?php echo site_url('user/add'); ?>">Ajouter autre</a>
  	</div>
  
 		<input type="text" id="counter" name="counter" hidden>

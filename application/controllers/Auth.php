@@ -6,10 +6,7 @@ class Auth extends CI_Controller{
         parent::__construct();
         $this->load->model('User_model');
 
-        // if(isset($_SESSION['user_logged'])){
-        //     // $this->session->set_flashdata('error','connecter !!!!');
-        //     redirect('/');
-        // }
+
         }
 
     function register(){
@@ -25,7 +22,7 @@ class Auth extends CI_Controller{
 					'nom' => $this->input->post('nom'),
 					'prenom' => $this->input->post('prenom'),
 					'username' => $this->input->post('username'),
-					'password' => md5($this->input->post('password')),
+					'password' => sha1($this->input->post('password')),
                     'adress' => $this->input->post('adress'),
 					'num_etab_sec' => $this->input->post('num_etab_sec'),
 					'cod_category' => $this->input->post('cod_category'),
@@ -40,6 +37,9 @@ class Auth extends CI_Controller{
 
 
         }
+        if(isset($_SESSION['user_logged'])){
+            redirect('/');
+        }
         $data['_view'] = 'register';
         $this->load->view('layouts/main', $data);
     }
@@ -51,7 +51,7 @@ class Auth extends CI_Controller{
 
             if($this->form_validation->run() == TRUE){
                 $username = $this->input->post('username');
-                $password = md5($this->input->post('password'));
+                $password = sha1($this->input->post('password'));
                 $user = $this->User_model->verify_user($username, $password);
                 if($user){
                     $this->session->set_flashdata("success","Vous etes connecté(e).");
@@ -66,6 +66,9 @@ class Auth extends CI_Controller{
                 }
             }
         
+        }
+        if(isset($_SESSION['user_logged'])){
+            redirect('/');
         }
         $data['_view'] = 'login';
         $this->load->view('layouts/main', $data);

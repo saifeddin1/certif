@@ -63,7 +63,7 @@ class User_model extends CI_Model
 
     function verify_user($username, $password)
     {
-        $this->db->select('*');
+        $this->db->select('userid, usertype, username, matricule, cin, nom,prenom, adress, num_etab_sec, cod_category, cod_tva, is_benificiare, date_created');
         $this->db->from('users');
         $this->db->where(array('username'=>$username, 'password'=>$password));
         return $this->db->get()->row_array();

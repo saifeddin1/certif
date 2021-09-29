@@ -45,11 +45,11 @@ class User extends CI_Controller{
 				'num_etab_sec' => $this->input->post('num_etab_sec'),
 				'cod_category' => $this->input->post('cod_category'),
 				'cod_tva' => $this->input->post('cod_tva'),
-				'is_benificiare' => $this->input->post('is_benificiare'),
+				'is_benificiare' => 1,
             );
             
             $user_id = $this->User_model->add_user($params);
-            redirect('/');
+            redirect('history/add');
         }
         else
         {            
