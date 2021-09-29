@@ -34,7 +34,6 @@
   
 </style>
 		 <div style="padding:5rem">
-
 			<?php	if(isset($_view) && $_view)
 			$this->load->view($_view);
 			?>

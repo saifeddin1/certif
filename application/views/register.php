@@ -1,4 +1,4 @@
-<div class="container text-center w-50">
+<div class="container text-center  card shadow-sm p-5" style="border-radius:30px;width:470px;">
 
     <?php echo form_open('auth/register'); ?>
 
@@ -6,27 +6,35 @@
     <?php echo validation_errors('<div>','</div>'); ?>
 
     <h1>Creer votre compte</h1>
-    <input class="my-2 form-control" type="text" name="nom" placeholder="nom"> <br>
-    <input class="my-2 form-control" type="text" name="prenom" placeholder="prenom"> <br>
-    <input class="my-2 form-control" type="text" name="adress" placeholder="adress"> <br>
-    <input class="my-2 form-control" type="text" name="username" placeholder="username"> <br>
-    <input class="my-2 form-control" type="password" name="password" placeholder="password"> <br>
-    <select name="usertype" id="usertype">
+    <div class="my-4 d-flex justify-content-between">
+        <input class="mr-3 form-control" type="text" name="nom" placeholder="Nom"> <br>
+        <input class="ml-3 form-control" type="text" name="prenom" placeholder="Prenom"> <br>
+    </div>
+    <input class="my-2 form-control" type="text" name="adress" placeholder="Address"> <br>
+    <input class="my-2 form-control" type="text" name="username" placeholder="Username"> <br>
+    <input class="my-2 form-control" type="password" name="password" placeholder="Password"> <br>
+    <select name="usertype" id="usertype" class="form-select">
         <option value="">---------</option>
         <option value="freelancer">Freelancer</option>
         <option value="societe">Societé</option>
-    </select> <br>
+    </select>  
 
     <input class="my-2 form-control" type="text" name="cin" placeholder="cin" id="cin">  <br>
 
-    <input type="text" name="matricule" placeholder="matricule" class="societe my-2 form-control"> <br>
-    <input type="text" name="num_etab_sec" placeholder="num_etab_sec" class="societe my-2 form-control">  <br>
-    <input type="text" name="cod_category" placeholder="cod_category" class="societe my-2 form-control"> <br>
-    <input type="text" name="cod_tva" placeholder="cod_tva"  class="societe my-2 form-control">  <br>
+  <div id="societe">
+    <div class="my-4 d-flex justify-content-between">
+        <input type="text" name="matricule" placeholder="Matricule" class="my-2 form-control"> <br>
+        <input type="text" name="num_etab_sec" placeholder="N° Etab. Secondaire" class="my-2 form-control">  <br>
+    </div>
+    <div class="my-4 d-flex justify-content-between">
+        <input type="text" name="cod_category" placeholder="Code Category" class="my-2 form-control"> <br>
+        <input type="text" name="cod_tva" placeholder="Code T.V.A"  class="my-2  form-control">  <br>
+    </div>
+  </div>
+    
 
-
-    <button type="submit" class="btn btn-success">
-        Creer un compte
+    <button type="submit" class="btn btn-dark w-100 rounded-pill">
+       CREER UN COMPTE
     </button>
     <?php echo form_close(); ?>
     <br>
@@ -38,17 +46,17 @@
     <script>
         $(document).ready(function(){
             $('#cin').css('display','none');
-            $('.societe').hide();
+            $('#societe').hide();
         })
         $('#usertype').change(function(){
             let DropDownSelectedValue = $("#usertype").find(":selected").val();
             console.log(DropDownSelectedValue);
             if(DropDownSelectedValue ==='societe'){
                 $('#cin').hide();
-                $('.societe').show();
+                $('#societe').show();
             }else if(DropDownSelectedValue ==='freelancer'){
                 $('#cin').show();
-                $('.societe').hide();
+                $('#societe').hide();
             }
             
     });
