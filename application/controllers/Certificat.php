@@ -140,7 +140,7 @@ class Certificat extends CI_Controller{
                 $this->History_model->update_history($history_id, array('user_id'=>$params['user_id'], 
                                                                     'certif_id'=>$certificat_id, 
                                                                     'date_rempli'=>date('Y-m-d H:i:s')));       
-                redirect('/');
+                redirect('dashboard');
             }
             else
             {
@@ -169,7 +169,7 @@ class Certificat extends CI_Controller{
             $this->Certificat_model->delete_certificat($idcertif);
             $this->History_model->delete_history($history_id);
             
-            redirect('/');
+            redirect('dashboard');
         }
         else
             show_error('The certificat you are trying to delete does not exist.');

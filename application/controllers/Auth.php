@@ -39,7 +39,7 @@ class Auth extends CI_Controller{
 
         }
         if(isset($_SESSION['user_logged'])){
-            redirect('/');
+            redirect('dashboard');
         }
         $data['_view'] = 'register';
         $this->load->view('layouts/main', $data);
@@ -58,7 +58,7 @@ class Auth extends CI_Controller{
                     $this->session->set_flashdata("success","Vous etes connecté(e).");
                     $_SESSION['user_logged'] = TRUE;
                     $_SESSION['user'] = $user;
-                    redirect('/');
+                    redirect('dashboard');
 
                 }else{
                     $this->session->set_flashdata("error","Pas de compte.");
@@ -69,7 +69,7 @@ class Auth extends CI_Controller{
         
         }
         if(isset($_SESSION['user_logged'])){
-            redirect('/');
+            redirect('dashboard');
         }
         $data['_view'] = 'login';
         $this->load->view('layouts/main', $data);

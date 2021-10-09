@@ -3,7 +3,7 @@
 
     <h2 class="text-capitalize text-center"><?php echo $certificat['title']; ?></h1>
     <div class="d-flex justify-content-between">
-        <a href="<?php echo site_url('/'); ?>" class="btn btn-secondary">&larr; Retour</a>
+        <a href="<?php echo site_url('dashboard'); ?>" class="btn btn-secondary">&larr; Retour</a>
     </div>
 
 
@@ -44,7 +44,7 @@
             
         </div>
     </div>
-    <table class="table table-responsive">
+    <table class="table">
         <th>RETENUE EFFECTUE SUR:</th>
         <th>Montant brut</th>
         <th>Retenue</th>

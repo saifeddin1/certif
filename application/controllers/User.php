@@ -159,7 +159,7 @@ class User extends CI_Controller{
     //                 $this->session->set_flashdata("success","Vous etes connecté(e).");
     //                 $_SESSION['user_logged'] = TRUE;
     //                 $_SESSION['user'] = $user['username'];
-    //                 redirect('/');
+    //                 redirect('dashboard');
 
     //             }else{
     //                 $this->session->set_flashdata("error","Pas de compte.");

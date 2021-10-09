@@ -88,7 +88,7 @@ class History extends CI_Controller{
 
                 }
 
-                redirect('/');
+                redirect('dashboard');
             }
             else
             {            
@@ -122,7 +122,7 @@ class History extends CI_Controller{
         {
              $this->History_model->delete_history($id_history);
             
-            redirect('/');
+            redirect('dashboard');
         }
         else
             show_error('The certificat you are trying to delete does not exist.');

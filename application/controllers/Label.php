@@ -44,7 +44,7 @@ class Label extends CI_Controller{
             
             $label_id = $this->Label_model->add_label($params);
 
-            redirect('/');
+            redirect('dashboard');
         }
         else
         {            

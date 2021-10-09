@@ -1,15 +1,5 @@
 <div class="row">
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
-			<li class="nav-item mx-3 ">
-			<h1 class="text-end">Hello, <span class="fst-italic"> <?php echo '@'.$_SESSION['user']['username']; ?> </span> </h1>
-			</li>
-			<li class="nav-item mx-3 ">
-			<a href="<?php echo site_url('auth/logout'); ?>" class="text-danger">logout</a>
-
-			</li>
-		</ul>
-	</nav>
+	 
  	<div class="col-12 card p-3 mb-3">
 	
 		<h2>Certificats</h2>
@@ -80,7 +70,7 @@
 
 	</div>
 	<div class="col-12 card p-3 card h-100  mb-3 p-3">
-		<h2>Historique</h2> 
+		<h2>Historiques</h2> 
 		<table class="table" border="1">
 			<tr>
 				<th>ID</th>
